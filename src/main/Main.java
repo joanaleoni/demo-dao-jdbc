@@ -3,6 +3,7 @@ package main;
 import java.util.Date;
 import java.util.List;
 import model.dao.DAOFactory;
+import model.dao.DepartmentDAO;
 import model.dao.SellerDAO;
 import model.domain.Department;
 import model.domain.Seller;
@@ -17,6 +18,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("========= Seller tests =========");
+        
         SellerDAO sellerDAO = DAOFactory.createSellerDAO();
         System.out.println(" -- TESTE 1: seller findyById ---");
         Seller seller = sellerDAO.findById(3);
@@ -48,8 +51,35 @@ public class Main {
         System.out.println("Update completed.");
         
         System.out.println("\n -- TESTE 6: seller delete ---");
-        sellerDAO.deleteById(9);
+        sellerDAO.deleteById(7);
         System.out.println("Delete completed");
-        
+
+        System.out.println("========= Department tests =========");
+        DepartmentDAO departmentDAO = DAOFactory.createDepartmentDAO();
+
+        System.out.println(" -- TEST 1: department findById --");
+        dep = departmentDAO.findById(1);
+        System.out.println(dep);
+
+        System.out.println("\n -- TEST 2: department findAll --");
+        List<Department> list = departmentDAO.findAll();
+        for (Department d : list) {
+            System.out.println(d);
+        }
+
+        System.out.println("\n -- TEST 3: department insert --");
+        Department newDepartment = new Department(null, "Music");
+        departmentDAO.insert(newDepartment);
+        System.out.println("Inserted! New id: " + newDepartment.getId());
+
+        System.out.println("\n -- TEST 4: department update --");
+        Department dep2 = departmentDAO.findById(1);
+        dep2.setName("Food");
+        departmentDAO.update(dep2);
+        System.out.println("Update completed");
+
+        System.out.println("\n -- TEST 5: department delete --");
+        departmentDAO.deleteById(4);
+        System.out.println("Delete completed");
     }
 }

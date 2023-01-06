@@ -1,5 +1,5 @@
 # Demo DAO JDBC
-> Conexão com banco de dados - JDBC/MySQL
+> Conexão com banco de dados - Java, JDBC, MySQL
 
 ## Conteúdos exercitados
 - Conexão com banco de dados utlizando JDBC para MySQL
